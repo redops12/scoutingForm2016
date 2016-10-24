@@ -1,45 +1,112 @@
 {% extends "base.html" %}
 {% block body %}
 <div class="row">
-	<div class='col-md-8'>
-		<h2>Scouting Form Template</h2>
-	</div>
-	<div class='col-md-4 text-right'>
-		<img src="static/custom/logo.png" id="logo"></img>
-	</div>
+  <div class="col-md-4 col-xs-4">
+    <h2>Scouting Form</h2>
+  </div>
+  <div class="col-md-8 col-xs-8 text-right">
+    <img src="static/custom/logo.png" id="logo"></img>
+  </div>
 </div>
 <form method="post" id="scouting-form" autocomplete="off">
   {{ form.csrf_token }}
   <div class="row form-group">
-		{{ form.match_id }}
-		{{ form.team_id }}
+    {{ form.match_id }}
+    {{ form.team_id }}
   </div>
-  <div class="row">  
+  <div class="row">
     <div class="col-md-6">
       {% if conf.get('station', 'none').lower() == 'none' %}
         <div id="alert" class="alert alert-warning">No player station selected; team ID completion is not available.
         See {{link_to('config_form', 'Settings')}} to choose a station.</div>
       {% else %}
         <div><label>Player Station: {{conf.get('station', '?')}}</label></div>
-        <div><label>Event: {{conf.get('event_name', '?')}}</label></div>
+        <div><label>Match name: {{conf.get('match_name', '?')}}</label></div>
         <div id="alert" class="alert" style="display: none;"></div>
       {% endif %}
     </div>
   </div>
   <div class="game-period">
-  	<h3>Autonomous</h3>
+    <h3>Autonomous</h3>
+    <div class="row">
+      <div class="col-md-6 col-xs-12">
+        {{ form.auton_start.label }} {{ form.auton_start }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-11 col-xs-12">
+        {{ form.auton_breach.label }} {{ form.auton_breach }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-xs-12">
+        {{ form.auton_score.label }} {{ form.auton_score }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-xs-12">
+        {{ form.auton_end.label }} {{ form.auton_end }}
+      </div>
+    </div>
   </div>
-  <div class='game-period'>
+  <div class="game-period">
     <h3>Teleop</h3>
-    
-  	<div class='row'>
-  		<div class='col-md-1'>
-  			<p>Comments:</p>
-  		</div>
-  		<div class='col-md-8'>
-  			{{ form.comments(rows='3') }}
-  		</div>
-  	</div>
+    <div class="row form-group">
+      {{ form.breach_count }}
+    </div>
+
+    <div class="row">
+      {{ form.cf_breach }}
+      {{ form.rp_breach }}
+      {{ form.sp_breach }}
+      {{ form.rt_breach }}
+      {{ form.lb_breach }}
+    </div>
+    <div class="row form-group">
+      {{ form.pc_breach }}
+      {{ form.mo_breach }}
+      {{ form.db_breach }}
+      {{ form.rw_breach }}
+      {{ form.stuff_breach }}
+    </div>
+
+    <div class="row">
+      {{ form.high_scores }}
+      {{ form.fouls }}
+    </div>
+    <div class="row">
+      {{ form.high_misses }}
+      {{ form.tech_fouls }}
+    </div>
+    <div class="row">
+      {{ form.low_scores }}
+    </div>
+    <div class="row">
+      <div class="col-md-10 col-xs-12">
+        {{ form.defense_rating.label }} {{ form.defense_rating }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-10 col-xs-12">
+        {{ form.defense_time.label }} {{ form.defense_time }}
+      </div>
+    </div>
+  </div>
+  <div class="game-period">
+    <h3>End Game</h3>
+  </div>
+  <div class="row">
+    {{ form.hang }}
+  </div>
+  <div class="row">
+    <div class="col-md-3 col-xs-12">
+      <h3>Comments</h3>
+    </div>
+  </div>
+  <div class="row form-group">
+    <div class="col-md-8 col-xs-12">
+      {{ form.comments(rows='5') }}
+    </div>
   </div>
   <div class="row">
     <div class="col-md-4"><input type="submit" class="btn btn-primary" value="Save"></div>
