@@ -2,10 +2,10 @@
 {% block body %}
 <div class="row">
   <div class="col-md-4 col-xs-4">
-    <h2>Scouting Form</h2>
+    <h2>Scouting Form Bloomfield</h2>
   </div>
   <div class="col-md-8 col-xs-8 text-right">
-    <img src="static/custom/logo.png" id="logo"></img>
+    <img src="static/custom/unknown.jpeg" id="logo"></img>
   </div>
 </div>
 <form method="post" id="scouting-form" autocomplete="off">
@@ -27,49 +27,53 @@
     </div>
   </div>
   <div class="game-period">
-    <h3>Autonomous</h3>
+    <h3>Auton</h3>
     <div class="row">
       <div class="col-md-6 col-xs-12">
         {{ form.auton_start.label }} {{ form.auton_start }}
       </div>
     </div>
+    
+    <div class="row form-group">
+      {{ form.autonbreach_count }}
+    </div>
     <div class="row">
-      <div class="col-md-11 col-xs-12">
-        {{ form.auton_breach.label }} {{ form.auton_breach }}
-      </div>
+      {{ form.acf_breach }}
+      {{ form.arp_breach }}
+      {{ form.art_breach }}
+      {{ form.alb_breach }}
+    </div>
+    <div class="row form-group">
+      {{ form.amo_breach }}
+      {{ form.adb_breach }}
+      {{ form.arw_breach }}
     </div>
     <div class="row">
       <div class="col-md-6 col-xs-12">
         {{ form.auton_score.label }} {{ form.auton_score }}
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-6 col-xs-12">
-        {{ form.auton_end.label }} {{ form.auton_end }}
-      </div>
+    <div class="row form-group">
+      {{ form.autonworking_percentage }}
     </div>
   </div>
   <div class="game-period">
     <h3>Teleop</h3>
+    
     <div class="row form-group">
       {{ form.breach_count }}
     </div>
-
     <div class="row">
       {{ form.cf_breach }}
       {{ form.rp_breach }}
-      {{ form.sp_breach }}
       {{ form.rt_breach }}
       {{ form.lb_breach }}
     </div>
     <div class="row form-group">
-      {{ form.pc_breach }}
       {{ form.mo_breach }}
       {{ form.db_breach }}
       {{ form.rw_breach }}
-      {{ form.stuff_breach }}
     </div>
-
     <div class="row">
       {{ form.high_scores }}
       {{ form.fouls }}
@@ -80,6 +84,15 @@
     </div>
     <div class="row">
       {{ form.low_scores }}
+    </div>
+    <br>
+    <br>
+    <div class="row">
+      {{ form.goalsandbreach }}
+      {{ form.certainty }}
+    </div>
+    <div class="row form-group">
+        {{ form.teleworking_percentage }}
     </div>
     <div class="row">
       <div class="col-md-10 col-xs-12">
